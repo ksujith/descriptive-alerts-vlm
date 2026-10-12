@@ -220,6 +220,11 @@ takes the native **58×** class imbalance down to ~5×. Timestamps are clamped
 into the real video extent first — the raw CSVs contain negative starts and ends
 past the video duration.
 
+Charades always has 480 as the *long* side and ~27% of clips are portrait
+(480×270 as well as 270×480). Frames are stored at short side ≤ 308 without
+upscaling, so every frame lands in a 160–185 visual-token band regardless of
+orientation — predictable memory, and the processor never has to downscale.
+
 ---
 
 ## Layout

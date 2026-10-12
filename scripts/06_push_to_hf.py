@@ -84,7 +84,6 @@ messages = [
 ]
 text = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
 inputs = processor(text=[text], videos=[frames], return_tensors="pt").to(model.device)
-inputs.pop("mm_token_type_ids", None)
 out = model.generate(**inputs, max_new_tokens=48, do_sample=False)
 print(processor.tokenizer.decode(out[0, inputs["input_ids"].shape[1]:], skip_special_tokens=True))
 ```

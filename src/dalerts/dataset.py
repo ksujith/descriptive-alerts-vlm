@@ -147,7 +147,10 @@ class AlertCollator:
             padding=True,
             cap_pixels_per_frame=self.cap,
         )
-        inputs.pop("mm_token_type_ids", None)  # not a forward() argument
+        # NOTE: `mm_token_type_ids` must be forwarded, not dropped. transformers
+        # v5 raises if multimodal grids are passed without it, because M-RoPE
+        # needs it to assign 3D positions to visual vs text tokens. It is also
+        # consumed by `prepare_inputs_for_generation`, so eval needs it too.
 
         if self.train:
             labels = inputs["input_ids"].clone()

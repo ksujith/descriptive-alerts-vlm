@@ -58,6 +58,11 @@ def _job(task: tuple) -> dict:
             "status": "ok",
             "n_frames": n_frames,
             "times": [round(t, 4) for t in frames.actual_times],
+            # Charades fps ranges down to ~6; a high frame budget on a short,
+            # low-fps window necessarily repeats source frames. Recording this
+            # lets the report separate "model failed" from "clip had no more
+            # temporal information to give".
+            "unique_frames": len(set(round(t, 4) for t in frames.actual_times)),
             "source_fps": round(frames.source_fps, 4),
             "source_size": list(frames.source_size),
             "stored_size": list(frames.images[0].size),
