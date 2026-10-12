@@ -1,0 +1,12 @@
+# Tiny run to prove the loop executes before spending GPU quota.
+manifest: data/interim/clips.csv
+frames: data/frames
+n_frames: 8
+output_dir: runs/smoke
+epochs: 1.0
+max_train: 16
+max_eval: 8
+grad_accum: 2
+logging_steps: 1
+save_steps: 100000
+eval_steps: 8

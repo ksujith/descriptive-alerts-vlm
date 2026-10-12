@@ -1,0 +1,27 @@
+# Primary run: Kaggle single T4, 8 frames per clip.
+# ~750 tokens/sample, fp16 LoRA on the language model only.
+manifest: data/interim/clips.csv
+frames: data/frames
+n_frames: 8
+arm: formatted
+model_id: Qwen/Qwen2-VL-2B-Instruct
+precision: fp16
+attn: sdpa
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_scope: lm
+max_tokens_per_frame: 256
+output_dir: runs/t4_8frame
+epochs: 2.0
+lr: 1.0e-4
+batch_size: 1
+grad_accum: 8
+warmup_ratio: 0.03
+lr_scheduler: cosine
+logging_steps: 25
+save_steps: 250
+eval_steps: 250
+max_eval: 200
+workers: 2
+seed: 1234

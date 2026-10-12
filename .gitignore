@@ -1,0 +1,27 @@
+# Data: never committed. See DATA_LICENSE.md - Charades may not be redistributed.
+# Ignore contents but keep the directory, so a fresh clone has somewhere to
+# download into. `data/` alone would stop git descending to find the negation.
+data/*
+!data/.gitkeep
+
+# Training / evaluation outputs
+runs/
+reports/preds/
+reports/results.json
+reports/RESULTS.md
+*.tar
+*.zip
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Notebook noise
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
